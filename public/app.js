@@ -13,6 +13,32 @@ button, input, select {
   font: inherit;
 }
 
+.hidden {
+  display: none !important;
+}
+
+.auth-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.62);
+  display: grid;
+  place-items: center;
+  z-index: 100;
+}
+
+.auth-card {
+  width: min(420px, calc(100vw - 32px));
+  background: white;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.14);
+}
+
+.auth-form {
+  display: grid;
+  gap: 14px;
+}
+
 .app-shell {
   display: grid;
   grid-template-columns: 260px 1fr 360px;
@@ -36,6 +62,36 @@ button, input, select {
 .cart-panel h2,
 .main-area h2 {
   margin: 0 0 16px 0;
+}
+
+.tabs {
+  display: grid;
+  gap: 8px;
+}
+
+.tab-button {
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+.tab-button.active {
+  background: #dbeafe;
+  border-color: #93c5fd;
+}
+
+.tab-button.danger {
+  background: #fee2e2;
+  border-color: #fca5a5;
+}
+
+.welcome-box {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 12px 14px;
 }
 
 .stats-box {
@@ -81,6 +137,10 @@ button, input, select {
   overflow: auto;
 }
 
+.view {
+  display: block;
+}
+
 .topbar {
   display: flex;
   justify-content: space-between;
@@ -109,11 +169,14 @@ input, select {
   min-width: 220px;
 }
 
-.product-section {
+.product-section,
+.product-form-card,
+.inventory-list-card {
   background: #fff;
   border: 1px solid #e5e7eb;
   border-radius: 16px;
   padding: 18px;
+  margin-bottom: 20px;
 }
 
 .section-header {
@@ -154,6 +217,60 @@ input, select {
   border-radius: 8px;
   padding: 10px 12px;
   cursor: pointer;
+}
+
+.grid-two {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.product-form {
+  display: grid;
+  gap: 16px;
+}
+
+.inventory-list {
+  display: grid;
+  gap: 10px;
+}
+
+.inventory-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+
+.inventory-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.inventory-actions input {
+  width: 80px;
+}
+
+.small-btn {
+  border: none;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #e5e7eb;
+}
+
+.primary-btn {
+  background: #16a34a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  cursor: pointer;
+  font-weight: 700;
 }
 
 .cart-panel {
@@ -222,16 +339,6 @@ input, select {
   gap: 12px;
 }
 
-.primary-btn {
-  background: #16a34a;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 12px;
-  cursor: pointer;
-  font-weight: 700;
-}
-
 .empty-state {
   color: #6b7280;
   font-size: 14px;
@@ -254,8 +361,9 @@ input, select {
     border: none;
   }
 
-  .topbar {
-    flex-direction: column;
-    align-items: stretch;
+  .topbar,
+  .grid-two {
+    grid-template-columns: 1fr;
+    display: grid;
   }
 }

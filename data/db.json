@@ -6,6 +6,22 @@
     "discountRate": 0,
     "receiptFooter": "Thank you for shopping with MRC Market"
   },
+  "users": [
+    {
+      "id": "user-admin",
+      "username": "admin",
+      "password": "admin123",
+      "role": "admin",
+      "name": "System Admin"
+    },
+    {
+      "id": "user-cashier",
+      "username": "cashier",
+      "password": "cash123",
+      "role": "cashier",
+      "name": "Store Cashier"
+    }
+  ],
   "products": [
     {
       "id": "prod-1",
