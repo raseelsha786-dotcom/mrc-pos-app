@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MRC POS</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <h1>MRC POS</h1>
+        <div class="stats-box">
+          <div>
+            <small>Today's Sales</small>
+            <strong id="today-sales">$0.00</strong>
+          </div>
+          <div>
+            <small>Orders</small>
+            <strong id="today-orders">0</strong>
+          </div>
+          <div>
+            <small>Low Stock</small>
+            <strong id="low-stock">0</strong>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Low Stock Items</h3>
+          <ul id="low-stock-list" class="list"></ul>
+        </div>
+      </aside>
+
+      <main class="main-area">
+        <header class="topbar">
+          <div>
+            <label class="field-label">Search</label>
+            <input id="search-input" type="text" placeholder="Search product or barcode" />
+          </div>
+          <div class="customer-box">
+            <label class="field-label">Customer</label>
+            <input id="customer-name" type="text" value="Walk-in Customer" />
+          </div>
+        </header>
+
+        <section class="product-section">
+          <div class="section-header">
+            <h2>Products</h2>
+          </div>
+          <div id="product-grid" class="product-grid"></div>
+        </section>
+      </main>
+
+      <aside class="cart-panel">
+        <h2>Cart</h2>
+        <div id="cart-items" class="cart-items"></div>
+
+        <div class="totals">
+          <div><span>Subtotal</span><strong id="subtotal">$0.00</strong></div>
+          <div><span>Tax</span><strong id="tax">$0.00</strong></div>
+          <div><span>Discount</span><strong id="discount">$0.00</strong></div>
+          <div class="grand-total"><span>Total</span><strong id="total">$0.00</strong></div>
+        </div>
+
+        <div class="checkout-controls">
+          <label>
+            Discount %
+            <input id="discount-percent" type="number" min="0" max="100" value="0" />
+          </label>
+          <label>
+            Payment Method
+            <select id="payment-method">
+              <option value="cash">Cash</option>
+              <option value="card">Card</option>
+              <option value="upi">UPI</option>
+            </select>
+          </label>
+          <button id="checkout-button" class="primary-btn">Complete Sale</button>
+        </div>
+      </aside>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

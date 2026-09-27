@@ -1,0 +1,24 @@
+{
+  "name": "mrc-pos-app",
+  "version": "1.0.0",
+  "description": "MRC POS backend and web POS application",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "pos",
+    "mrc",
+    "retail",
+    "inventory",
+    "sales"
+  ],
+  "author": "MRC Team",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "uuid": "^11.0.2"
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "settings": {
+    "storeName": "MRC Market",
+    "currency": "USD",
+    "taxRate": 10,
+    "discountRate": 0,
+    "receiptFooter": "Thank you for shopping with MRC Market"
+  },
+  "products": [
+    {
+      "id": "prod-1",
+      "name": "Coca Cola 250ml",
+      "sku": "CC-250",
+      "barcode": "8901234567891",
+      "category": "Beverages",
+      "price": 45,
+      "cost": 25,
+      "taxRate": 10,
+      "stock": 25,
+      "active": true,
+      "createdAt": "2026-09-27T00:00:00.000Z"
+    },
+    {
+      "id": "prod-2",
+      "name": "Classic Burger",
+      "sku": "BUR-001",
+      "barcode": "8901234567001",
+      "category": "Food",
+      "price": 120,
+      "cost": 70,
+      "taxRate": 10,
+      "stock": 18,
+      "active": true,
+      "createdAt": "2026-09-27T00:00:00.000Z"
+    },
+    {
+      "id": "prod-3",
+      "name": "French Fries",
+      "sku": "FF-010",
+      "barcode": "8901234567002",
+      "category": "Food",
+      "price": 80,
+      "cost": 42,
+      "taxRate": 10,
+      "stock": 21,
+      "active": true,
+      "createdAt": "2026-09-27T00:00:00.000Z"
+    },
+    {
+      "id": "prod-4",
+      "name": "Premium Coffee",
+      "sku": "COF-200",
+      "barcode": "8901234567003",
+      "category": "Beverages",
+      "price": 90,
+      "cost": 40,
+      "taxRate": 10,
+      "stock": 12,
+      "active": true,
+      "createdAt": "2026-09-27T00:00:00.000Z"
+    },
+    {
+      "id": "prod-5",
+      "name": "Plain Lassi",
+      "sku": "LAS-40",
+      "barcode": "8901234567004",
+      "category": "Beverages",
+      "price": 60,
+      "cost": 28,
+      "taxRate": 10,
+      "stock": 14,
+      "active": true,
+      "createdAt": "2026-09-27T00:00:00.000Z"
+    }
+  ],
+  "orders": [
+    {
+      "id": "ord-1",
+      "orderNumber": "ORD-1001",
+      "customerName": "Walk-in Customer",
+      "paymentMethod": "cash",
+      "items": [
+        { "productId": "prod-2", "name": "Classic Burger", "quantity": 2, "price": 120 }
+      ],
+      "subtotal": 240,
+      "tax": 24,
+      "discount": 0,
+      "total": 264,
+      "status": "completed",
+      "createdAt": "2026-09-20T12:00:00.000Z"
+    },
+    {
+      "id": "ord-2",
+      "orderNumber": "ORD-1002",
+      "customerName": "Cashier",
+      "paymentMethod": "card",
+      "items": [
+        { "productId": "prod-1", "name": "Coca Cola 250ml", "quantity": 3, "price": 45 },
+        { "productId": "prod-3", "name": "French Fries", "quantity": 1, "price": 80 }
+      ],
+      "subtotal": 215,
+      "tax": 21.5,
+      "discount": 0,
+      "total": 236.5,
+      "status": "completed",
+      "createdAt": "2026-09-23T18:30:00.000Z"
+    }
+  ]
+}
