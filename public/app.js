@@ -116,7 +116,8 @@ button, input, select {
   padding: 16px;
 }
 
-.list {
+.list,
+.stack-list {
   list-style: none;
   padding: 0;
   margin: 10px 0 0;
@@ -124,7 +125,8 @@ button, input, select {
   gap: 8px;
 }
 
-.list li {
+.list li,
+.stack-list li {
   font-size: 14px;
   background: #fff;
   border: 1px solid #e5e7eb;
@@ -171,7 +173,8 @@ input, select {
 
 .product-section,
 .product-form-card,
-.inventory-list-card {
+.inventory-list-card,
+.table-card {
   background: #fff;
   border: 1px solid #e5e7eb;
   border-radius: 16px;
@@ -219,10 +222,33 @@ input, select {
   cursor: pointer;
 }
 
-.grid-two {
+.grid-two,
+.two-panel-grid,
+.reports-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(180px, 1fr));
   gap: 16px;
+}
+
+.grid-two {
+  grid-template-columns: repeat(2, minmax(180px, 1fr));
+}
+
+.two-panel-grid {
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+}
+
+.reports-grid {
+  grid-template-columns: repeat(2, minmax(180px, 1fr));
+  margin-bottom: 20px;
+}
+
+.mini-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 18px;
+  display: grid;
+  gap: 6px;
 }
 
 .product-form {
@@ -230,12 +256,14 @@ input, select {
   gap: 16px;
 }
 
-.inventory-list {
+.inventory-list,
+.orders-list {
   display: grid;
   gap: 10px;
 }
 
-.inventory-item {
+.inventory-item,
+.order-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -362,7 +390,9 @@ input, select {
   }
 
   .topbar,
-  .grid-two {
+  .grid-two,
+  .two-panel-grid,
+  .reports-grid {
     grid-template-columns: 1fr;
     display: grid;
   }

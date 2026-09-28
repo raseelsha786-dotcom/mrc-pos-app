@@ -35,6 +35,8 @@
         <div class="tabs">
           <button class="tab-button active" data-tab="pos">POS</button>
           <button class="tab-button" data-tab="products">Products</button>
+          <button class="tab-button" data-tab="orders">Orders</button>
+          <button class="tab-button" data-tab="reports">Reports</button>
           <button id="logout-button" class="tab-button danger">Logout</button>
         </div>
 
@@ -125,6 +127,37 @@
           <div class="inventory-list-card">
             <h2>Inventory</h2>
             <div id="inventory-list" class="inventory-list"></div>
+          </div>
+        </section>
+
+        <section id="orders-view" class="view hidden">
+          <div class="table-card">
+            <h2>Recent Orders</h2>
+            <div id="orders-list" class="orders-list"></div>
+          </div>
+        </section>
+
+        <section id="reports-view" class="view hidden">
+          <div class="reports-grid">
+            <div class="mini-card">
+              <small>Total Revenue</small>
+              <strong id="report-total-sales">$0.00</strong>
+            </div>
+            <div class="mini-card">
+              <small>Total Orders</small>
+              <strong id="report-total-orders">0</strong>
+            </div>
+          </div>
+
+          <div class="two-panel-grid">
+            <div class="table-card">
+              <h3>Payment Breakdown</h3>
+              <div id="payment-breakdown" class="stack-list"></div>
+            </div>
+            <div class="table-card">
+              <h3>Top Selling Products</h3>
+              <div id="top-products" class="stack-list"></div>
+            </div>
           </div>
         </section>
       </main>

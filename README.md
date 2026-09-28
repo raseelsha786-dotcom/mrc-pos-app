@@ -3,6 +3,8 @@ const state = {
   cart: [],
   dashboard: null,
   lowStock: [],
+  orders: [],
+  reports: null,
   authToken: localStorage.getItem('mrc-token') || '',
   userName: localStorage.getItem('mrc-user-name') || 'Admin'
 };
@@ -19,12 +21,15 @@ const discountPercentInput = document.getElementById('discount-percent');
 const paymentMethodSelect = document.getElementById('payment-method');
 const checkoutButton = document.getElementById('checkout-button');
 const inventoryList = document.getElementById('inventory-list');
+const ordersList = document.getElementById('orders-list');
 const userNameDisplay = document.getElementById('user-name');
 
 const tabButtons = document.querySelectorAll('.tab-button[data-tab]');
 const views = {
   pos: document.getElementById('pos-view'),
-  products: document.getElementById('products-view')
+  products: document.getElementById('products-view'),
+  orders: document.getElementById('orders-view'),
+  reports: document.getElementById('reports-view')
 };
 
 function setAuthState() {
@@ -142,6 +147,34 @@ async function fetchLowStock() {
     li.textContent = `${product.name} (${product.stock})`;
     lowStockList.appendChild(li);
   });
+}
+
+async function fetchOrders() {
+  const res = await fetch('/api/orders', {
+    headers: { Authorization: `Bearer ${state.authToken}` }
+  });
+
+  if (res.status === 401) {
+    logout();
+    return;
+  }
+
+  state.orders = await res.json();
+  renderOrders();
+}
+
+async function fetchReports() {
+  const res = await fetch('/api/reports', {
+    headers: { Authorization: `Bearer ${state.authToken}` }
+  });
+
+  if (res.status === 401) {
+    logout();
+    return;
+  }
+
+  state.reports = await res.json();
+  renderReports();
 }
 
 function renderProducts() {
@@ -362,6 +395,8 @@ async function completeSale() {
     await fetchProducts();
     await fetchDashboard();
     await fetchLowStock();
+    await fetchOrders();
+    await fetchReports();
     alert(`Sale completed: ${data.orderNumber} | Total: ${formatCurrency(data.total)}`);
   } catch (error) {
     alert(error.message);
@@ -398,6 +433,64 @@ async function handleProductSubmit(event) {
   }
 }
 
+function renderOrders() {
+  ordersList.innerHTML = '';
+
+  if (!state.orders.length) {
+    ordersList.innerHTML = '<div class="empty-state">No orders yet</div>';
+    return;
+  }
+
+  state.orders.forEach((order) => {
+    const row = document.createElement('div');
+    row.className = 'order-row';
+    row.innerHTML = `
+      <div>
+        <strong>${order.orderNumber}</strong><br />
+        <small>${order.customerName} • ${new Date(order.createdAt).toLocaleString()}</small>
+      </div>
+      <div>
+        <strong>${formatCurrency(order.total)}</strong><br />
+        <small>${order.paymentMethod}</small>
+      </div>
+    `;
+    ordersList.appendChild(row);
+  });
+}
+
+function renderReports() {
+  const totals = state.reports || { totalSales: 0, totalOrders: 0, byPaymentMethod: [], topProducts: [] };
+
+  document.getElementById('report-total-sales').textContent = formatCurrency(totals.totalSales || 0);
+  document.getElementById('report-total-orders').textContent = totals.totalOrders || 0;
+
+  const paymentBreakdown = document.getElementById('payment-breakdown');
+  paymentBreakdown.innerHTML = '';
+
+  if (!totals.byPaymentMethod.length) {
+    paymentBreakdown.innerHTML = '<li>No payment data</li>';
+  } else {
+    totals.byPaymentMethod.forEach((item) => {
+      const li = document.createElement('li');
+      li.textContent = `${item.method.toUpperCase()}: ${formatCurrency(item.value)}`;
+      paymentBreakdown.appendChild(li);
+    });
+  }
+
+  const topProductsList = document.getElementById('top-products');
+  topProductsList.innerHTML = '';
+
+  if (!totals.topProducts.length) {
+    topProductsList.innerHTML = '<li>No product sales</li>';
+  } else {
+    totals.topProducts.forEach((item) => {
+      const li = document.createElement('li');
+      li.textContent = `${item.name}: ${item.quantity} sold`;
+      topProductsList.appendChild(li);
+    });
+  }
+}
+
 function formatCurrency(value) {
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -420,6 +513,8 @@ async function initDashboard() {
   await fetchProducts();
   await fetchDashboard();
   await fetchLowStock();
+  await fetchOrders();
+  await fetchReports();
   renderCart();
 }
 
